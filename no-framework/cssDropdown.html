@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Menu Example</title>
+        <style>
+            body {
+                font-family: Helvetica;
+                margin: 0;
+                padding: 0;
+                background-color: rgb(219, 249, 229);
+            }
+            nav {
+                background-color: rgb(39, 156, 64);
+                display: flex;
+                flex-direction: row;
+            }
+            nav > div:hover,
+            nav > div:focus-within {
+                background-color: rgb(39, 196, 64);
+                position: relative;
+            }
+            h2,
+            label {
+                display: block;
+                margin: 0;
+                padding: 5px 10px;
+                min-width: 100px;
+                font-size: large;
+            }
+            .dropdown {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                background-color: rgb(39, 196, 64);
+                width: 100%;
+            }
+            div:hover > .dropdown,
+            div:focus-within > .dropdown {
+                display: flex;
+            }
+            nav input {
+                position: absolute;
+                top: -10000px;
+            }
+            nav a {
+                display: block;
+                padding: 5px 10px;
+                text-decoration: none;
+            }
+            nav a:hover {
+                background-color: rgb(39, 255, 64);
+            }
+
+            .container {
+                max-width: 70%;
+                margin: 0 auto;
+            }
+            h3 {
+                margin: 0;
+            }
+            .alert {
+                background-color: rgb(255, 255, 255);
+                padding: 1rem;
+                margin: 1.2rem;
+            }
+            .yellow {
+                border-left: 5px solid rgb(245, 245, 80);
+            }
+            .green {
+                border-left: 5px solid rgb(39, 196, 64);
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div>
+                <h2>File</h2>
+                <div class="dropdown">
+                    <a>New</a>
+                    <a>Open</a>
+                    <a>Save</a>
+                    <a>Print</a>
+                    <a>Close</a>
+                </div>
+            </div>
+            <div>
+                <label>
+                    <input />
+                    Edit
+                </label>
+                <div class="dropdown">
+                    <a>Undo</a>
+                    <a>Redo</a>
+                    <a>Cut</a>
+                    <a>Copy</a>
+                    <a>Paste</a>
+                    <a>Delete</a>
+                    <a>Select All</a>
+                </div>
+            </div>
+            <div>
+                <h2>View</h2>
+                <div class="dropdown">
+                    <a>Zoom In</a>
+                    <a>Zoom Out</a>
+                    <a>Actual Size</a>
+                    <a>Fit Page</a>
+                    <a>Fit Width</a>
+                    <a>Fit Height</a>
+                    <a>Rotate Left</a>
+                    <a>Rotate Right</a>
+                    <a>Full Screen</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="alert green">
+                <h3>Instructions</h3>
+                <p>
+                    Recreate this page using <b><i>only CSS</i></b
+                    >. Do yourself a favor and 1) Do not view the source. Figure
+                    it out yourself. 2) Do not search for the solution. Learn
+                    CSS until you know enough to do this.
+                </p>
+            </div>
+
+            <div class="alert yellow">
+                <h3>Extra Credit</h3>
+                <p>
+                    Notice how the Edit menu (besides for not being bold) reacts
+                    to clicks. If you click the edit menu, it remains open until
+                    you click somewhere else. (This you might need to search
+                    for)
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
