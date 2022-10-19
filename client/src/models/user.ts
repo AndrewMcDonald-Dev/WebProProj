@@ -6,4 +6,5 @@ export interface User {
     lastName: string;
     handle: string;
     isAdmin: boolean;
+    id: number;
 }

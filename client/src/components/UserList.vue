@@ -8,7 +8,7 @@ const props = defineProps<{
 
 <template>
     <tr v-for="(user, index) in users" :key="index">
-        <th>1</th>
+        <th>{{ user.id }}</th>
         <td>
             <div class="avatar-image">
                 <figure class="image is-64x64">

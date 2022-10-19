@@ -32,7 +32,8 @@ export const useSession = defineStore('session', {
             handle: string,
             email: string,
             password: string,
-            pic: string
+            pic: string,
+            id: number
         ) {
             users.push({
                 firstName,
@@ -42,6 +43,7 @@ export const useSession = defineStore('session', {
                 password,
                 pic,
                 isAdmin: false,
+                id,
             });
         },
     },
@@ -56,6 +58,7 @@ export const users: User[] = [
         lastName: 'McDonald',
         handle: 'coolguy10',
         isAdmin: true,
+        id: 1,
     },
     {
         firstName: 'Koolaid',
@@ -65,6 +68,7 @@ export const users: User[] = [
         password: 'qwerty',
         pic: 'https://randomuser.me/portraits/men/2.jpg',
         isAdmin: false,
+        id: 2,
     },
     {
         firstName: 'Type',
@@ -74,5 +78,6 @@ export const users: User[] = [
         password: 'qwerty',
         pic: 'https://randomuser.me/portraits/women/3.jpg',
         isAdmin: false,
+        id: 3,
     },
 ];
