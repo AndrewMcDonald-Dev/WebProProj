@@ -1,0 +1,19 @@
+{
+    "name": "webproproj",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "dev": "nodemon --watch server server/index.js",
+        "start": "node server/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AndrewMcDonald-Dev/WebProProj.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/AndrewMcDonald-Dev/WebProProj/issues"
+    },
+    "homepage": "https://github.com/AndrewMcDonald-Dev/WebProProj#readme"
+}
