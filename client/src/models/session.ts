@@ -47,7 +47,7 @@ export const useSession = defineStore('session', {
     },
 });
 
-const users: User[] = [
+export const users: User[] = [
     {
         email: 'test@yahoo.com',
         password: 'password',
@@ -56,5 +56,23 @@ const users: User[] = [
         lastName: 'McDonald',
         handle: 'coolguy10',
         isAdmin: true,
+    },
+    {
+        firstName: 'Koolaid',
+        lastName: 'Guy',
+        email: 'ohyeag@email.com',
+        handle: 'kool',
+        password: 'qwerty',
+        pic: 'https://randomuser.me/portraits/men/2.jpg',
+        isAdmin: false,
+    },
+    {
+        firstName: 'Type',
+        lastName: 'Script',
+        email: 'is@email.com',
+        handle: 'awesome',
+        password: 'qwerty',
+        pic: 'https://randomuser.me/portraits/women/3.jpg',
+        isAdmin: false,
     },
 ];
