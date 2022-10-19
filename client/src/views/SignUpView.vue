@@ -17,7 +17,15 @@ const pic = ref('');
             <form
                 class="register-form form"
                 @submit.prevent="
-                    Register(firstName, lastName, handle, email, password, pic)
+                    Register(
+                        firstName,
+                        lastName,
+                        handle,
+                        email,
+                        password,
+                        pic,
+                        5
+                    )
                 "
             >
                 <div class="form-header">

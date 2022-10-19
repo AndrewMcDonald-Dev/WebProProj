@@ -26,7 +26,7 @@ const router = createRouter({
         {
             path: '/friends',
             name: 'friends',
-            component: () => import('../views/FriendWorkoutsView.vue'),
+            component: () => import('../views/FriendView.vue'),
         },
         {
             path: '/admin',

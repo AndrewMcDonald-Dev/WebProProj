@@ -40,6 +40,9 @@ let isActive = ref(false);
                 <router-link class="navbar-item" to="/friends">
                     Friends
                 </router-link>
+                <router-link class="navbar-item" to="/recent">
+                    Recents
+                </router-link>
 
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link"> More </a>

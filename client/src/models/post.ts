@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
-import { useSession } from './session';
+import { users, useSession } from './session';
+import type { User } from './user';
 
 export const usePosts = defineStore('post', {
     state: () => ({
@@ -20,6 +21,11 @@ export const usePosts = defineStore('post', {
         },
         loadPosts() {
             this.posts = posts;
+        },
+        grabUser(owner: number): User | null {
+            const foundUser = users.find(({ id }) => id === owner);
+            if (foundUser) return foundUser;
+            return null;
         },
     },
 });
@@ -51,7 +57,7 @@ const posts: Post[] = [
     },
 ];
 
-interface Post {
+export interface Post {
     owner: number;
     acitivity: string;
     pic: string;

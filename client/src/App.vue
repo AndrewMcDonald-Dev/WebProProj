@@ -5,15 +5,26 @@ import FooterVue from './components/Footer.vue';
 </script>
 
 <template>
-    <header>
-        <NavVue />
-    </header>
+    <div class="wrap">
+        <header>
+            <NavVue />
+        </header>
 
-    <div class="container take-up-space">
-        <RouterView />
-    </div>
+        <div class="take-up-space">
+            <RouterView />
+        </div>
 
-    <footer>
         <FooterVue />
-    </footer>
+    </div>
 </template>
+
+<style scoped lang="scss">
+.take-up-space {
+    flex: 1 0 auto;
+}
+.wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+</style>

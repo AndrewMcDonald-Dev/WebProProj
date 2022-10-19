@@ -21,3 +21,9 @@ import UserList from '../components/UserList.vue';
         </tbody>
     </table>
 </template>
+
+<style scoped lang="scss">
+.table {
+    margin: 3em auto;
+}
+</style>
