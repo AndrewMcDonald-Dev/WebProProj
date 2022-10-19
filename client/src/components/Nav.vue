@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import LoginBadge from './LoginBadge.vue';
+import { useSession } from '../models/session';
+const session = useSession();
 
 let isActive = ref(false);
 </script>
@@ -49,7 +51,11 @@ let isActive = ref(false);
                         <router-link class="navbar-item" to="/stats">
                             Statistics
                         </router-link>
-                        <router-link class="navbar-item" to="/admin">
+                        <router-link
+                            class="navbar-item"
+                            to="/admin"
+                            v-if="session.user?.isAdmin"
+                        >
                             Admin
                         </router-link>
                     </div>
@@ -57,7 +63,7 @@ let isActive = ref(false);
             </div>
 
             <div class="navbar-end">
-                <div class="navbar-item">
+                <div class="navbar-item no-padding">
                     <div class="buttons">
                         <LoginBadge />
                     </div>
@@ -66,3 +72,10 @@ let isActive = ref(false);
         </div>
     </nav>
 </template>
+
+<style scoped lang="scss">
+.no-padding {
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+}
+</style>

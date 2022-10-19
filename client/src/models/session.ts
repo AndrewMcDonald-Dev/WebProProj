@@ -41,6 +41,7 @@ export const useSession = defineStore('session', {
                 email,
                 password,
                 pic,
+                isAdmin: false,
             });
         },
     },
@@ -54,5 +55,6 @@ const users: User[] = [
         firstName: 'Andrew',
         lastName: 'McDonald',
         handle: 'coolguy10',
+        isAdmin: true,
     },
 ];

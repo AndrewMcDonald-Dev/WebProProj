@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useSession } from '../models/session';
-import RecentView from '../view/RecentView.vue';
 import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
+import RecentView from '../views/RecentView.vue';
 import SignUpView from '../views/SignUpView.vue';
 
 const router = createRouter({

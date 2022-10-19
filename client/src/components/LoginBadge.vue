@@ -29,6 +29,9 @@ const session = useSession();
                 </p>
             </div>
         </div>
+        <a @click="session.Logout" class="button is-primary">
+            <strong>Log Out</strong>
+        </a>
     </div>
 </template>
 
@@ -43,15 +46,17 @@ const session = useSession();
     display: flex;
     flex-direction: row;
     margin-right: 1em;
+    align-items: center;
 }
 
 .img {
-    max-height: 5em;
+    max-height: 4em;
 }
 
 .avatar-image {
     margin: 0.4em;
     margin-top: 0em;
+    margin-right: 1em;
     padding-top: 0em;
 }
 </style>
