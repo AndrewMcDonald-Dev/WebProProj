@@ -14,11 +14,6 @@ const router = createRouter({
             component: HomeView,
         },
         {
-            path: '/edit',
-            name: 'edit',
-            component: () => import('../views/EditWorkoutsView.vue'),
-        },
-        {
             path: '/stats',
             name: 'stats',
             component: () => import('../views/StatsView.vue'),
@@ -55,7 +50,7 @@ const router = createRouter({
 router.beforeEach((to, _from) => {
     const session = useSession();
 
-    const protectedUrls = ['/edit', '/stats', '/friends', '/admin', '/about'];
+    const protectedUrls = ['/stats', '/friends', '/admin', '/recent'];
 
     if (protectedUrls.includes(to.path.toLowerCase()))
         if (!session.user) return '/login';

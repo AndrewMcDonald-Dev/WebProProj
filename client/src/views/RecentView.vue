@@ -2,6 +2,7 @@
 import Posts from '../components/Posts.vue';
 import { usePosts } from '../models/post';
 import { useSession } from '../models/session';
+import AddWorkoutButton from '../components/AddWorkoutButton.vue';
 
 const session = useSession();
 
@@ -10,6 +11,7 @@ const { grabUser, deletePost, grabMyPosts, sortPosts } = usePosts();
 
 <template>
     <div class="container">
+        <AddWorkoutButton />
         <Posts
             v-for="(post, index) in sortPosts(grabMyPosts(session.user?.id as number))"
             :key="index"

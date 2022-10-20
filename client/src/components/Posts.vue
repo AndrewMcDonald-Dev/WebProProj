@@ -68,4 +68,8 @@ const props = defineProps<{
     padding-left: 0.3em;
     padding-right: 0.3em;
 }
+
+.card-image {
+	margin-top: .5em;
+}
 </style>

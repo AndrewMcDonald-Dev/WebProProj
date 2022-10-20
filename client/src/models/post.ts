@@ -8,12 +8,12 @@ export const usePosts = defineStore('post', {
         session: useSession(),
     }),
     actions: {
-        addPost(owner: number, acitivity: string, pic: string, date: string) {
+        addPost(owner: number, acitivity: string, pic: string, date: Date) {
             this.posts.push({
                 owner,
                 acitivity,
                 pic,
-                date: new Date(date),
+                date,
             });
         },
         deletePost(index: number) {

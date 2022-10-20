@@ -22,7 +22,7 @@ let isActive = ref(false);
                 role="button"
                 :class="{ 'is-active': isActive }"
                 @click="isActive = !isActive"
-                clase="navbar-burger"
+                class="navbar-burger"
                 aria-label="menu"
                 aria-expanded="false"
                 data-target="navbarBasicExample"
@@ -48,9 +48,6 @@ let isActive = ref(false);
                     <a class="navbar-link"> More </a>
 
                     <div class="navbar-dropdown">
-                        <router-link class="navbar-item" to="/edit">
-                            Edit
-                        </router-link>
                         <router-link class="navbar-item" to="/stats">
                             Statistics
                         </router-link>
