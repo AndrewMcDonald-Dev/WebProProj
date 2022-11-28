@@ -17,6 +17,8 @@
     },
     "homepage": "https://github.com/AndrewMcDonald-Dev/WebProProj#readme",
     "dependencies": {
-        "express": "^4.18.2"
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "mongodb": "^4.12.1"
     }
 }
