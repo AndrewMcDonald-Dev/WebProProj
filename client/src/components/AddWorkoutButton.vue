@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { usePosts } from '@/models/post';
-import { useSession } from '@/models/session';
 import { ref } from 'vue';
 
 const posts = usePosts();

@@ -62,7 +62,7 @@ export const useSession = defineStore('session', {
 
                 if (user) {
                     this.user = user;
-                    router.push(this.destinationUrl ?? '/wall');
+                    router.push(this.destinationUrl ?? '/friends');
                 }
             } catch (error: any) {
                 console.log(error);

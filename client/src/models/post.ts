@@ -26,11 +26,17 @@ export const usePosts = defineStore('post', {
             await this.fetchPosts();
         },
         async fetchPosts() {
-            this.posts = (await api('post')).data as Post[];
+            this.posts = (await api('posts')).data as Post[];
         },
         async deletePost(index: number) {
-            await api(`posts/${this.posts[index]._id}`, null, 'DELETE');
-            this.posts.splice(index, 1);
+            const post = this.posts[index];
+            if (
+                post.owner._id == this.session.user?._id ||
+                this.session.user?.isAdmin
+            ) {
+                await api(`posts/${post._id}`, null, 'DELETE');
+                this.posts.splice(index, 1);
+            }
         },
         grabMyPosts() {
             const temp = this.posts;
@@ -43,9 +49,10 @@ export const usePosts = defineStore('post', {
             );
         },
         sortPosts(posts: Post[]) {
-            return this.posts.sort(
+            return posts.sort(
                 (postA, postB) =>
-                    postB.timeCreated.getTime() - postA.timeCreated.getTime()
+                    new Date(postB.timeCreated).getTime() -
+                    new Date(postA.timeCreated).getTime()
             );
         },
     },

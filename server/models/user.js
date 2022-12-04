@@ -67,8 +67,8 @@ const update = async (id, user) => {
 	return { ...user, password: undefined };
 };
 
-const login = async (handle, password) => {
-	const user = await collection.findOne({ handle });
+const login = async (email, password) => {
+	const user = await collection.findOne({ email });
 	if (!user)
 		throw { stausCode: StatusCodes.NOT_FOUND, message: "User not found" };
 

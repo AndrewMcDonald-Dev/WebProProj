@@ -3,3 +3,9 @@ post http://localhost:3000/api/v1/users/seed
 ###
 
 post http://localhost:3000/api/v1/posts/seed
+
+### 
+get http://localhost:3000/api/v1/users/
+
+###
+get http://localhost:3000/api/v1/posts/

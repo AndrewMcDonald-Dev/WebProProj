@@ -1,7 +1,6 @@
 const userModel = require('./user');
 const { StatusCodes } = require('http-status-codes');
 const { db, ObjectId } = require('./mongo');
-const { post } = require('../controllers/users');
 
 const postCollection = db.db(process.env.DB_NAME).collection('posts');
 
@@ -49,9 +48,9 @@ const remove = async (id) => {
 	const post = await postCollection.findOneAndDelete({
 		_id: new ObjectId(id),
 	});
-	return await includeUser(post.value);
+	return await post.value;
 };
-const update = async (id, newtask) => {
+const update = async (id, newpost) => {
 	newpost = await postCollection.findOneAndUpdate(
 		{ _id: new ObjectId(id) },
 		{ $set: newpost },
@@ -60,7 +59,8 @@ const update = async (id, newtask) => {
 	return await includeUser(newpost.value);
 };
 
-const seed = () => postCollection.insertMany(list);
+const seed = () => postCollection.insertMany(list)
+
 
 module.exports = {
 	async create(post) {

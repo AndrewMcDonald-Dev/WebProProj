@@ -2,21 +2,25 @@
 import Posts from '../components/Posts.vue';
 import { usePosts } from '../models/post';
 import AddWorkoutButton from '../components/AddWorkoutButton.vue';
+import { onMounted } from 'vue';
 
-const { sortPosts, deletePost, posts } = usePosts();
+const posts = usePosts();
+onMounted(async () => {
+    await posts.fetchPosts();
+});
 </script>
 
 <template>
     <div class="container">
         <AddWorkoutButton />
         <Posts
-            v-for="(post, index) in sortPosts(posts)"
+            v-for="(post, index) in posts.sortPosts(posts.posts)"
             :key="index"
             :pfp="(post.owner?.pic as string)"
             :activity="post.acitivity"
-            :date="post.timeCreated.toDateString()"
+            :date="new Date(post.timeCreated).toDateString()"
             :pic="post.pic"
-            :delete-post="deletePost"
+            :delete-post="posts.deletePost"
             :first-name="(post.owner?.firstName as string)"
             :last-name="(post.owner?.lastName as string)"
             :index="index"
