@@ -3,7 +3,7 @@ import Posts from '../components/Posts.vue';
 import { usePosts } from '../models/post';
 import AddWorkoutButton from '../components/AddWorkoutButton.vue';
 
-const { posts, sortPosts, grabUser, deletePost } = usePosts();
+const { sortPosts, deletePost, posts } = usePosts();
 </script>
 
 <template>
@@ -12,15 +12,15 @@ const { posts, sortPosts, grabUser, deletePost } = usePosts();
         <Posts
             v-for="(post, index) in sortPosts(posts)"
             :key="index"
-            :pfp="(grabUser(post.owner)?.pic as string)"
+            :pfp="(post.owner?.pic as string)"
             :activity="post.acitivity"
-            :date="post.date.toDateString()"
+            :date="post.timeCreated.toDateString()"
             :pic="post.pic"
             :delete-post="deletePost"
-            :first-name="(grabUser(post.owner)?.firstName as string)"
-            :last-name="(grabUser(post.owner)?.lastName as string)"
+            :first-name="(post.owner?.firstName as string)"
+            :last-name="(post.owner?.lastName as string)"
             :index="index"
-            :handle="(grabUser(post.owner)?.handle as string)"
+            :handle="(post.owner?.handle as string)"
         />
     </div>
 </template>

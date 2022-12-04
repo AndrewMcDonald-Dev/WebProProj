@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { useSession, users } from '../models/session';
+import { useUsers } from '../models/user';
 import UserList from '../components/UserList.vue';
+import { onMounted } from 'vue';
+
+const users = useUsers();
+onMounted(async () => {
+    await users.fetchUsers();
+});
 </script>
 
 <template>
@@ -17,7 +23,7 @@ import UserList from '../components/UserList.vue';
             </tr>
         </thead>
         <tbody>
-            <UserList :users="users" />
+            <UserList :users="users.list" />
         </tbody>
     </table>
 </template>

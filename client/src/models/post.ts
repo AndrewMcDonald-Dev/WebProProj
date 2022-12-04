@@ -1,47 +1,60 @@
 import { defineStore } from 'pinia';
-import { users, useSession } from './session';
+import { api } from './myFetch';
+import { useSession } from './session';
 import type { User } from './user';
 
 export const usePosts = defineStore('post', {
     state: () => ({
-        posts: posts as Post[],
+        posts: [] as Post[],
         session: useSession(),
     }),
     actions: {
-        addPost(owner: number, acitivity: string, pic: string, date: Date) {
-            this.posts.push({
-                owner,
+        async addPost(acitivity: string, pic: string, date: Date) {
+            if (!this.session.user)
+                console.error('Current user not stored in addPost().');
+
+            const newPost = {
+                owner: this.session.user as User,
                 acitivity,
                 pic,
-                date,
-            });
+                timeCreated: date,
+            };
+
+            const post = (await this.session.api('posts', newPost, 'POST'))
+                .data as Post;
+
+            await this.fetchPosts();
         },
-        deletePost(index: number) {
+        async fetchPosts() {
+            this.posts = (await api('post')).data as Post[];
+        },
+        async deletePost(index: number) {
+            await api(`posts/${this.posts[index]._id}`, null, 'DELETE');
             this.posts.splice(index, 1);
         },
-        loadPosts() {
-            this.posts = posts;
-        },
-        grabUser(owner: number): User | null {
-            const foundUser = users.find(({ id }) => id === owner);
-            if (foundUser) return foundUser;
-            return null;
-        },
-        grabMyPosts(owner: number) {
+        grabMyPosts() {
             const temp = this.posts;
-            return temp.filter((post: any) => owner === post.owner);
+            if (!this.session.user)
+                throw { message: 'No session.user detected for grabMyPosts' };
+            return this.sortPosts(
+                temp.filter(
+                    (post: any) => this.session.user?._id === post.owner._id
+                )
+            );
         },
-        sortPosts(ps: Post[]) {
-            return ps.sort(
-                (postA, postB) => postB.date.getTime() - postA.date.getTime()
+        sortPosts(posts: Post[]) {
+            return this.posts.sort(
+                (postA, postB) =>
+                    postB.timeCreated.getTime() - postA.timeCreated.getTime()
             );
         },
     },
 });
 
 export interface Post {
-    owner: number;
+    owner: User;
     acitivity: string;
     pic: string;
-    date: Date;
+    timeCreated: Date;
+    _id: string;
 }

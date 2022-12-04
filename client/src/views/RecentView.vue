@@ -6,24 +6,24 @@ import AddWorkoutButton from '../components/AddWorkoutButton.vue';
 
 const session = useSession();
 
-const { grabUser, deletePost, grabMyPosts, sortPosts } = usePosts();
+const { deletePost, grabMyPosts, sortPosts } = usePosts();
 </script>
 
 <template>
     <div class="container">
         <AddWorkoutButton />
         <Posts
-            v-for="(post, index) in sortPosts(grabMyPosts(session.user?.id as number))"
+            v-for="(post, index) in grabMyPosts()"
             :key="index"
-            :pfp="(grabUser(post.owner)?.pic as string)"
+            :pfp="(post.owner?.pic as string)"
             :activity="post.acitivity"
-            :date="post.date.toDateString()"
+            :date="post.timeCreated.toDateString()"
             :pic="post.pic"
             :delete-post="deletePost"
-            :first-name="(grabUser(post.owner)?.firstName as string)"
-            :last-name="(grabUser(post.owner)?.lastName as string)"
+            :first-name="(post.owner?.firstName as string)"
+            :last-name="(post.owner?.lastName as string)"
             :index="index"
-            :handle="(grabUser(post.owner)?.handle as string)"
+            :handle="(post.owner?.handle as string)"
         />
     </div>
 </template>

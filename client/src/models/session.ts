@@ -1,41 +1,42 @@
 import { defineStore } from 'pinia';
 import router from '../router/index';
+import { api } from './myFetch';
 import type { User } from './user';
 
 export const useSession = defineStore('session', {
     state: () => ({
         user: null as User | null,
+        destinationUrl: null as string | null,
     }),
     actions: {
-        Login(email: string, password: string) {
-            const foundUser = users.find(
-                (user) => user.email.toLowerCase() === email.toLowerCase()
-            );
-            if (!foundUser) {
-                console.error('failed to find user');
-                return;
-            }
-            if (foundUser.password === password) {
-                this.user = foundUser;
-                router.push('/friends');
+        async Login(email: string, password: string) {
+            try {
+                const user = await this.api('users/login', { email, password });
+                if (user) {
+                    this.user = user;
+                    router.push(this.destinationUrl ?? '/wall');
+                    localStorage.setItem('user', user.token);
+                }
+            } catch (error: any) {
+                console.table(error);
             }
         },
 
         Logout() {
             this.user = null;
             router.push('/login');
+            localStorage.removeItem('user');
         },
 
-        Register(
+        async Register(
             firstName: string,
             lastName: string,
             handle: string,
             email: string,
             password: string,
-            pic: string,
-            id: number
+            pic: string
         ) {
-            users.push({
+            const user = {
                 firstName,
                 lastName,
                 handle,
@@ -43,8 +44,51 @@ export const useSession = defineStore('session', {
                 password,
                 pic,
                 isAdmin: false,
-                id,
-            });
+            };
+            try {
+                const newUser = await this.api('users', user, 'POST');
+                if (newUser) {
+                    this.user = newUser;
+                    router.push(this.destinationUrl ?? '/wall');
+                    localStorage.setItem('user', newUser.token);
+                }
+            } catch (error: any) {
+                console.table(error);
+            }
+        },
+        async LoginByToken(token: string) {
+            try {
+                const user = await this.api(`users/login/${token}`);
+
+                if (user) {
+                    this.user = user;
+                    router.push(this.destinationUrl ?? '/wall');
+                }
+            } catch (error: any) {
+                console.log(error);
+            }
+        },
+        async api(
+            url: string,
+            body?: any,
+            method?: 'GET' | 'POST' | 'PUT' | 'DELETE',
+            headers: any = {}
+        ) {
+            if (this.user?.token)
+                headers.Authorization = `Bearer ${this.user.token}`;
+
+            try {
+                const response = await api(url, body, method, headers);
+
+                if (response.errors?.length)
+                    throw { message: response.errors.join('') };
+
+                if (response.error) throw { message: response.error };
+
+                return await response.data;
+            } catch (error: any) {
+                console.log(error.message);
+            }
         },
     },
 });

@@ -3,7 +3,6 @@ import { usePosts } from '@/models/post';
 import { useSession } from '@/models/session';
 import { ref } from 'vue';
 
-const session = useSession();
 const posts = usePosts();
 
 const isActive = ref(false);
@@ -63,12 +62,7 @@ const convertDate = (date: string) => {
                         <button
                             class="button is-link"
                             @click="
-                                posts.addPost(
-                                    session.user?.id as number,
-                                    activity,
-                                    pic,
-                                    convertDate(date)
-                                )
+                                posts.addPost(activity, pic, convertDate(date))
                             "
                         >
                             Submit

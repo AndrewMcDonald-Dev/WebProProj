@@ -47,8 +47,16 @@ const router = createRouter({
     linkActiveClass: 'is-active',
 });
 
-router.beforeEach((to, _from) => {
+router.beforeEach(async (to, _from) => {
     const session = useSession();
+
+    //auto login if user has jwt
+    if (!session.user) {
+        const userToken = localStorage.getItem('user');
+        if (userToken) {
+            await session.LoginByToken(userToken);
+        }
+    }
 
     const protectedUrls = ['/stats', '/friends', '/admin', '/recent'];
 
