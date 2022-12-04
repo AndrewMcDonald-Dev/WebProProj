@@ -1,16 +1,16 @@
 require('dotenv').config();
-import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverApi: ServerApiVersion.v1,
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	serverApi: ServerApiVersion.v1,
 });
 const isConnected = client.connect();
 
-export default {
-    isConnected,
-    db: client,
-    ObjectId,
+module.exports = {
+	isConnected,
+	db: client,
+	ObjectId,
 };
