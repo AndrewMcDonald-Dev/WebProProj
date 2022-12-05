@@ -4,13 +4,16 @@
     "description": "",
     "scripts": {
         "dev": "nodemon --watch server server/index.js",
-        "build": "npm i && cd client && npm i && npm run build ",
+        "build": "npm i -ws && npm run build -ws ",
         "start": "node server/index.js"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/AndrewMcDonald-Dev/WebProProj.git"
     },
+      "workspaces": [
+    "client"
+  ],
     "author": "",
     "license": "ISC",
     "bugs": {
