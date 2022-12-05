@@ -4,7 +4,7 @@
     "description": "",
     "scripts": {
         "dev": "nodemon --watch server server/index.js",
-        "build": "npm i -ws && cd client && npm i && npm start ",
+        "build": "npm i -ws && cd client && npm i && npm run build-only ",
         "start": "node server/index.js"
     },
     "repository": {
