@@ -14,7 +14,7 @@ export const useSession = defineStore('session', {
                 const user = await this.api('users/login', { email, password });
                 if (user) {
                     this.user = user;
-                    router.push(this.destinationUrl ?? '/wall');
+                    router.push(this.destinationUrl ?? '/friends');
                     localStorage.setItem('user', user.token);
                 }
             } catch (error: any) {
@@ -49,7 +49,7 @@ export const useSession = defineStore('session', {
                 const newUser = await this.api('users', user, 'POST');
                 if (newUser) {
                     this.user = newUser;
-                    router.push(this.destinationUrl ?? '/wall');
+                    router.push(this.destinationUrl ?? '/friends');
                     localStorage.setItem('user', newUser.token);
                 }
             } catch (error: any) {

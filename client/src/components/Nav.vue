@@ -5,6 +5,7 @@ import { useSession } from '../models/session';
 const session = useSession();
 
 let isActive = ref(false);
+
 </script>
 
 <template>

@@ -66,7 +66,6 @@ const update = async (id, user) => {
 	);
 	return { ...user, password: undefined };
 };
-
 const login = async (email, password) => {
 	const user = await collection.findOne({ email });
 	if (!user)
@@ -86,7 +85,7 @@ const login = async (email, password) => {
 };
 
 const searchUsers = async (partialHandle) => {
-	const users = await collection.find({
+	const users = collection.find({
 		$or: [
 			{ handle: { $regex: partialHandle, $options: "i" } },
 			{ firstName: { $regex: partialHandle, $options: "i" } },
@@ -147,6 +146,7 @@ module.exports = {
 	remove,
 	update,
 	login,
+	get,
 	getByToken,
 	collection,
 	getByHandle,

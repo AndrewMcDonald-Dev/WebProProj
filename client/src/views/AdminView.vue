@@ -2,6 +2,7 @@
 import { useUsers } from '../models/user';
 import UserList from '../components/UserList.vue';
 import { onMounted } from 'vue';
+import AutoCompleteVue from '../components/AutoComplete.vue';
 
 const users = useUsers();
 onMounted(async () => {
@@ -10,6 +11,13 @@ onMounted(async () => {
 </script>
 
 <template>
+    
+    <div class="columns">
+        <div class="column">
+
+            <AutoCompleteVue/>
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -30,6 +38,6 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 .table {
-    margin: 3em auto;
+    margin: 1em auto;
 }
 </style>
