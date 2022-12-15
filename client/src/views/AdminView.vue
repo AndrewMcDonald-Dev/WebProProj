@@ -1,21 +1,31 @@
 <script setup lang="ts">
-import { useUsers } from '../models/user';
+import { useUsers, type User } from '../models/user';
 import UserList from '../components/UserList.vue';
-import { onMounted } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 import AutoCompleteVue from '../components/AutoComplete.vue';
+import { useComplete } from '../models/autcomplete'
+const autoComplete = useComplete()
 
 const users = useUsers();
 onMounted(async () => {
     await users.fetchUsers();
 });
+
+//! couldnt get to work
+// let userList: Ref<User[]>;
+// if(autoComplete.list.length > 0) {
+//     userList = ref(autoComplete.list)
+// } else {
+//     userList = ref(users.list)
+// }
 </script>
 
 <template>
-    
+
     <div class="columns">
         <div class="column">
 
-            <AutoCompleteVue/>
+            <AutoCompleteVue :update-query="autoComplete.updateQuery" :list="autoComplete.list" />
         </div>
     </div>
     <table class="table">

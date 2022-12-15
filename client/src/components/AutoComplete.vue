@@ -1,7 +1,13 @@
 
-<script setup lang="ts">
-import { useComplete } from '../models/autcomplete'
-const autoComplete = useComplete()
+<script setup lang="ts">import { ref } from 'vue';
+import type { User } from '../models/user';
+
+const props = defineProps<{
+    list: User[];
+    updateQuery: (newQuery: String) => void;
+}>();
+
+let newQuery = ref("")
 
 </script>
 
@@ -9,15 +15,15 @@ const autoComplete = useComplete()
     <div class="field">
         Enter User:
         <div class="control">
-            <div class="dropdown" :class="{ 'is-active': autoComplete.list.length > 0 }">
+            <div class="dropdown" :class="{ 'is-active': list.length > 0 }">
                 <div class="dropdown-trigger">
-                    <input type="text" class="input" name="User" v-model="autoComplete.query"
-                        @input="autoComplete.updateQuery()" placeholder="Enter Desired User's Name" />
+                    <input type="text" class="input" name="User" v-model="newQuery"
+                        @input="updateQuery(newQuery)" placeholder="Enter Desired User's Name" />
                 </div>
-                <div class="dropdown-menu" v-if="autoComplete.list.length > 0">
+                <div class="dropdown-menu" v-if="list.length > 0">
                     <div class="dropdown-content">
-                        <a v-for="(user, index) in autoComplete.list" class="dropdown-item" href="#" :key="index"
-                            @click="autoComplete.query = user.handle">
+                        <a v-for="(user, index) in list" class="dropdown-item" href="#" :key="index"
+                            @click="newQuery = user.handle">
                             {{ `${user.firstName} ${user.lastName}` }}
                         </a>
                     </div>
